@@ -148,7 +148,7 @@ public class MainJavaActivity extends AppCompatActivity {
                     Toast.makeText(context, "state : " + meetingStatus, Toast.LENGTH_SHORT).show();
                     switch (meetingStatus) {
                         case MEETING_STATUS_INMEETING:
-                            // meetingId = String.valueOf(meetingService.getCurrentRtcMeetingNumber());
+                             meetingId = String.valueOf(meetingService.getCurrentRtcMeetingNumber());
                             Toast.makeText(context, "id  : " + meetingService.getCurrentRtcMeetingNumber(), Toast.LENGTH_SHORT).show();
                             break;
                     }
