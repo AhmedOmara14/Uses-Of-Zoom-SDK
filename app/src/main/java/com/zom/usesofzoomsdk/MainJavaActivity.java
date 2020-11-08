@@ -31,7 +31,7 @@ import static us.zoom.sdk.MeetingStatus.MEETING_STATUS_INMEETING;
 
 public class MainJavaActivity extends AppCompatActivity {
     public String url, meetingId;
-
+    private static final String TAG = "MainJavaActivity";
     private ZoomSDKAuthenticationListener authListener = new ZoomSDKAuthenticationListener() {
         @Override
         public void onZoomSDKLoginResult(long result) {
@@ -93,12 +93,15 @@ public class MainJavaActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+
         findViewById(R.id.join_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 createJoinMeetingDialog();
             }
         });
+
+
 
         findViewById(R.id.login_button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,7 +123,6 @@ public class MainJavaActivity extends AppCompatActivity {
         JoinMeetingParams params = new JoinMeetingParams();
         params.displayName = ""; // TODO: Enter your name
         params.meetingNo = meetingNumber;
-        // params.password = password;
 
 
         meetingService.joinMeetingWithParams(context, params, options);
@@ -149,7 +151,10 @@ public class MainJavaActivity extends AppCompatActivity {
                     switch (meetingStatus) {
                         case MEETING_STATUS_INMEETING:
                              meetingId = String.valueOf(meetingService.getCurrentRtcMeetingNumber());
-                            Toast.makeText(context, "id  : " + meetingService.getCurrentRtcMeetingNumber(), Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "base onMeetingStatusChanged: "+meetingService.getCurrentRtcMeetingNumber());
+                            Log.d(TAG, "base getH323Password: "+ meetingService.getInviteRoomSystemHelper().getH323Password());
+                            Log.d(TAG, "base url: "+ meetingService.getCurrentMeetingUrl());
+
                             break;
                     }
 
